@@ -10,7 +10,12 @@ jobs:
           distribution: temurin
           java-version: 25
       - run: chmod +x gradlew && ./gradlew buildAndCollect
+      - name: List jars
+        if: always()
+        run: find . -name "*.jar" -not -path "./.gradle/*" -not -path "./gradle/*" | head -50
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: jars
-          path: build/libs/**/*.jar
+          path: build/libs
+          if-no-files-found: error
