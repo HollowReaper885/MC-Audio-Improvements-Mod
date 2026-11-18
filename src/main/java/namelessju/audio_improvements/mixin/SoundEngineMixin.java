@@ -115,7 +115,7 @@ public abstract class SoundEngineMixin
             AudioImprovements mod = AudioImprovements.instance();
             SoundChannelMixinAccessor channelMixinAccessor = (SoundChannelMixinAccessor) source;
 
-            if (mod.musicDiscSoundInstances.contains(soundInstance))
+            if (mod.musicDiscSoundInstances.contains(soundInstance)     || soundInstance.getSource() == SoundSource.RECORDS)
             {
                 channelMixinAccessor.audioImprovements$setSoundType(SoundChannelType.MUSIC_DISC);
                 mod.musicBlockChannels.add(source);
